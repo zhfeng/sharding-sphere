@@ -3,7 +3,6 @@ lexer grammar Symbol;
 AND_SYM: '&&';
 OR_SYM: '||';
 NOT_SYM: '!';
-SAFE_EQ: '<=>';
 
 UNARY_BIT_COMPLEMENT: '~';
 BIT_INCLUSIVE_OR: '|';
@@ -14,14 +13,13 @@ BIT_EXCLUSIVE_OR: '^';
 MOD_SYM: '%';
 
 
-ADD_OP: '+' ;
-SUB_OP: '-' ;
-MUL_OP: '*' ;
-DIV_OP: '/' ;
+PLUS: '+' ;
+MINUS: '-' ;
+ASTERISK: '*' ;
+SLASH: '/' ;
 DOT: '.';
 
-
-
+SAFE_EQ: '<=>';
 EQ: '==';
 EQ_OR_ASSIGN: '=';
 NEQ: '!=';
@@ -40,6 +38,7 @@ DOUBLE_QUOTA: '"';
 SINGLE_QUOTA: '\'';
 BACK_QUOTA: '`';
 UL_: '_';
+QUESTION: '?' ;
 
 fragment A: [Aa];
 fragment B: [Bb];

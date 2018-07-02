@@ -15,9 +15,9 @@ STRING:
 	;
     
 NUMBER:
-     SUB_OP? INT DOT [0-9]+ EXP?
-     |SUB_OP? INT | EXP
-     |SUB_OP? INT
+     MINUS? INT DOT [0-9]+ EXP?
+     |MINUS? INT | EXP
+     |MINUS? INT
      ;
      
 fragment INT :

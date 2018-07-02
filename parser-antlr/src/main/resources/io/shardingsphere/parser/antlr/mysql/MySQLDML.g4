@@ -22,6 +22,7 @@ expr:
   	| expr XOR expr
   	| expr AND expr
  	| expr AND_SYM expr
+ 	| LEFT_PAREN expr RIGHT_PAREN
   	| NOT expr
   	| NOT_SYM expr
   	| booleanPrimary
@@ -41,11 +42,11 @@ comparisonOperator:
 
 predicate:
 	bitExpr NOT? IN subquery
-	| bitExpr NOT? IN LEFT_PAREN expr ( COMMA  expr)* RIGHT_PAREN
-	| bitExpr NOT? BETWEEN bitExpr AND predicate
-	| bitExpr SOUNDS LIKE bitExpr
+	| bitExpr NOT? IN LEFT_PAREN simpleExpr ( COMMA  simpleExpr)* RIGHT_PAREN
+	| bitExpr NOT? BETWEEN simpleExpr AND predicate
+	| bitExpr SOUNDS LIKE simpleExpr
 	| bitExpr NOT? LIKE simpleExpr (ESCAPE simpleExpr)*
-	| bitExpr NOT? REGEXP bitExpr
+	| bitExpr NOT? REGEXP simpleExpr
 	| bitExpr
 	;
   
@@ -54,10 +55,10 @@ bitExpr:
 	| bitExpr BIT_AND bitExpr
 	| bitExpr SIGNED_LEFT_SHIFT bitExpr
 	| bitExpr SIGNED_RIGHT_SHIFT bitExpr
-	| bitExpr ADD_OP bitExpr
-	| bitExpr SUB_OP bitExpr
-	| bitExpr MUL_OP bitExpr
-	| bitExpr DIV_OP bitExpr
+	| bitExpr PLUS bitExpr
+	| bitExpr MINUS bitExpr
+	| bitExpr ASTERISK bitExpr
+	| bitExpr SLASH bitExpr
 	| bitExpr DIV bitExpr
 	| bitExpr MOD bitExpr
 	| bitExpr MOD_SYM bitExpr
@@ -75,13 +76,13 @@ simpleExpr:
 	//| param_marker
 	//| variable
 	| simpleExpr AND_SYM simpleExpr
-	| ADD_OP simpleExpr
-	| SUB_OP simpleExpr
+	| PLUS simpleExpr
+	| MINUS simpleExpr
 	| UNARY_BIT_COMPLEMENT simpleExpr
 	| NOT_SYM simpleExpr
 	| BINARY simpleExpr
 	| LEFT_PAREN expr RIGHT_PAREN
-	| ROW LEFT_PAREN expr( COMMA  expr)* RIGHT_PAREN
+	| ROW LEFT_PAREN simpleExpr( COMMA  simpleExpr)* RIGHT_PAREN
 	| subquery
 	| EXISTS subquery
 	// | (identifier expr)
@@ -91,7 +92,8 @@ simpleExpr:
 	;
  
 liter:
-	NUMBER
+	QUESTION
+	|NUMBER
 	|TRUE 
 	|FALSE
 	|NULL

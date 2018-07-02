@@ -92,5 +92,5 @@ TIMESTAMP:TIME S T A M P;
 
 ID: 
 	(BACK_QUOTA?[a-zA-Z_$][a-zA-Z0-9_$]* BACK_QUOTA? DOT)?
-	(BACK_QUOTA?[a-zA-Z_$][a-zA-Z0-9_$]* BACK_QUOTA?)
+	(BACK_QUOTA?[a-zA-Z_$*][a-zA-Z0-9_$]* BACK_QUOTA?)
 	;

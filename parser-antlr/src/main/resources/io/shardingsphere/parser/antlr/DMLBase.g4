@@ -17,7 +17,7 @@ selectExpression:
 	;
 	
 selectClause:
-	SELECT selectSpec selectExpr
+	SELECT selectSpec selectExprs
 	;
 	
 selectSpec:
@@ -56,17 +56,25 @@ limitClause:
 	;
 	
 rangeClause:
-	NUMBER ( COMMA  NUMBER)* 
+	NUMBER (COMMA  NUMBER)* 
 	| NUMBER OFFSET NUMBER
 	;
-       
+    
 subquery:
 	LEFT_PAREN selectExpression RIGHT_PAREN
 	;
-	  
+	
+selectExprs:
+    (ASTERISK (COMMA selectExpr)*) 
+    |selectExpr (COMMA ASTERISK)? (COMMA selectExpr)*
+     ;
+     
 selectExpr:
-	'*'|expr( COMMA  expr)*
+	bitExpr AS? ID?
 	;
+
+bitExpr:
+   ;
 
 //define delete rule template
 delete: 
