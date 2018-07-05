@@ -130,7 +130,6 @@ tableFactor:
   	| LEFT_PAREN tableReferences RIGHT_PAREN
 	;
 	
-alias:ID;
 
 joinTable:
 	(INNER | CROSS)? JOIN tableFactor joinCondition?
@@ -176,7 +175,7 @@ deleteSpec:
 	
 // define insert rule
 insert:
-	insertClause INTO ID partitionClause? 
+	insertClause INTO? ID partitionClause? 
 	(setClause | columnClause) onDuplicateClause?
 	;
 	

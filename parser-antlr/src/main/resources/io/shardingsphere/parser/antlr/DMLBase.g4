@@ -67,14 +67,17 @@ subquery:
 selectExprs:
     (ASTERISK (COMMA selectExpr)*) 
     |selectExpr (COMMA ASTERISK)? (COMMA selectExpr)*
-     ;
+    ;
      
 selectExpr:
-	bitExpr AS? ID?
+	bitExpr AS? alias?
 	;
 
 bitExpr:
+	
    ;
+ 
+alias:ID;
 
 //define delete rule template
 delete: 
