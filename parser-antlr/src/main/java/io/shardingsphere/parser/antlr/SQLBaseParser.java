@@ -19,21 +19,22 @@ public class SQLBaseParser extends Parser {
 	public static final int
 		STRING=1, NUMBER=2, EXP=3, HEX_DIGIT=4, BIT_NUM=5, WS=6, SELECT=7, ALL=8, 
 		ANY=9, DISTINCT=10, FROM=11, PARTITION=12, WHERE=13, GROUP=14, BY=15, 
-		ASC=16, DESC=17, WITH=18, ROLLUP=19, HAVING=20, WINDOW=21, AS=22, ORDER=23, 
-		LIMIT=24, OFFSET=25, INTO=26, SET=27, FOR=28, UPDATE=29, SHARE=30, OF=31, 
-		NOWAIT=32, LOCKED=33, LOCK=34, IN=35, MODE=36, INNER=37, CROSS=38, JOIN=39, 
-		ON=40, LEFT=41, RIGHT=42, OUTER=43, NATURAL=44, USING=45, USE=46, INDEX=47, 
-		KEY=48, IGNORE=49, FORCE=50, UNION=51, DEFAULT=52, DELETE=53, QUICK=54, 
-		INSERT=55, VALUES=56, VALUE=57, DUPLICATE=58, EXISTS=59, IS=60, AND=61, 
-		OR=62, XOR=63, NOT=64, BETWEEN=65, NULL=66, TRUE=67, FALSE=68, UNKNOWN=69, 
-		SOUNDS=70, LIKE=71, DIV=72, MOD=73, BINARY=74, ROW=75, ESCAPE=76, REGEXP=77, 
-		DATE=78, TIME=79, TIMESTAMP=80, ID=81, AND_SYM=82, OR_SYM=83, NOT_SYM=84, 
-		SAFE_EQ=85, UNARY_BIT_COMPLEMENT=86, BIT_INCLUSIVE_OR=87, BIT_AND=88, 
-		SIGNED_LEFT_SHIFT=89, SIGNED_RIGHT_SHIFT=90, BIT_EXCLUSIVE_OR=91, MOD_SYM=92, 
-		ADD_OP=93, SUB_OP=94, MUL_OP=95, DIV_OP=96, DOT=97, EQ=98, EQ_OR_ASSIGN=99, 
-		NEQ=100, NEQ_SYM=101, GT=102, GTE=103, LT=104, LTE=105, LEFT_PAREN=106, 
-		RIGHT_PAREN=107, LEFT_BRACE=108, RIGHT_BRACE=109, COMMA=110, DOUBLE_QUOTA=111, 
-		SINGLE_QUOTA=112, BACK_QUOTA=113, UL_=114;
+		ASC=16, DESC=17, WITH=18, RECURSIVE=19, ROLLUP=20, HAVING=21, WINDOW=22, 
+		AS=23, ORDER=24, LIMIT=25, OFFSET=26, INTO=27, SET=28, FOR=29, UPDATE=30, 
+		SHARE=31, OF=32, NOWAIT=33, LOCKED=34, LOCK=35, IN=36, MODE=37, INNER=38, 
+		CROSS=39, JOIN=40, ON=41, LEFT=42, RIGHT=43, OUTER=44, NATURAL=45, USING=46, 
+		USE=47, INDEX=48, KEY=49, IGNORE=50, FORCE=51, UNION=52, DEFAULT=53, DELETE=54, 
+		QUICK=55, INSERT=56, VALUES=57, VALUE=58, DUPLICATE=59, EXISTS=60, IS=61, 
+		AND=62, OR=63, XOR=64, NOT=65, BETWEEN=66, NULL=67, TRUE=68, FALSE=69, 
+		UNKNOWN=70, SOUNDS=71, LIKE=72, DIV=73, MOD=74, BINARY=75, ROW=76, ESCAPE=77, 
+		REGEXP=78, DATE=79, TIME=80, TIMESTAMP=81, CASE=82, WHEN=83, THEN=84, 
+		IF=85, ELSE=86, END=87, ID=88, AND_SYM=89, OR_SYM=90, NOT_SYM=91, UNARY_BIT_COMPLEMENT=92, 
+		BIT_INCLUSIVE_OR=93, BIT_AND=94, SIGNED_LEFT_SHIFT=95, SIGNED_RIGHT_SHIFT=96, 
+		BIT_EXCLUSIVE_OR=97, MOD_SYM=98, PLUS=99, MINUS=100, ASTERISK=101, SLASH=102, 
+		DOT=103, SAFE_EQ=104, EQ=105, EQ_OR_ASSIGN=106, NEQ=107, NEQ_SYM=108, 
+		GT=109, GTE=110, LT=111, LTE=112, LEFT_PAREN=113, RIGHT_PAREN=114, LEFT_BRACE=115, 
+		RIGHT_BRACE=116, COMMA=117, DOUBLE_QUOTA=118, SINGLE_QUOTA=119, BACK_QUOTA=120, 
+		UL_=121, QUESTION=122;
 	public static final int
 		RULE_itemList = 0, RULE_item = 1;
 	public static final String[] ruleNames = {
@@ -47,28 +48,29 @@ public class SQLBaseParser extends Parser {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, null, null, null, "'&&'", "'||'", 
-		"'!'", "'<=>'", "'~'", "'|'", "'&'", "'<<'", "'>>'", "'^'", "'%'", "'+'", 
-		"'-'", "'*'", "'/'", "'.'", "'=='", "'='", "'!='", "'<>'", "'>'", "'>='", 
-		"'<'", "'<='", "'('", "')'", "'{'", "'}'", "','", "'\"'", "'''", "'`'", 
-		"'_'"
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, null, null, "'&&'", "'||'", "'!'", "'~'", "'|'", "'&'", 
+		"'<<'", "'>>'", "'^'", "'%'", "'+'", "'-'", "'*'", "'/'", "'.'", "'<=>'", 
+		"'=='", "'='", "'!='", "'<>'", "'>'", "'>='", "'<'", "'<='", "'('", "')'", 
+		"'{'", "'}'", "','", "'\"'", "'''", "'`'", "'_'", "'?'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, "STRING", "NUMBER", "EXP", "HEX_DIGIT", "BIT_NUM", "WS", "SELECT", 
 		"ALL", "ANY", "DISTINCT", "FROM", "PARTITION", "WHERE", "GROUP", "BY", 
-		"ASC", "DESC", "WITH", "ROLLUP", "HAVING", "WINDOW", "AS", "ORDER", "LIMIT", 
-		"OFFSET", "INTO", "SET", "FOR", "UPDATE", "SHARE", "OF", "NOWAIT", "LOCKED", 
-		"LOCK", "IN", "MODE", "INNER", "CROSS", "JOIN", "ON", "LEFT", "RIGHT", 
-		"OUTER", "NATURAL", "USING", "USE", "INDEX", "KEY", "IGNORE", "FORCE", 
-		"UNION", "DEFAULT", "DELETE", "QUICK", "INSERT", "VALUES", "VALUE", "DUPLICATE", 
-		"EXISTS", "IS", "AND", "OR", "XOR", "NOT", "BETWEEN", "NULL", "TRUE", 
-		"FALSE", "UNKNOWN", "SOUNDS", "LIKE", "DIV", "MOD", "BINARY", "ROW", "ESCAPE", 
-		"REGEXP", "DATE", "TIME", "TIMESTAMP", "ID", "AND_SYM", "OR_SYM", "NOT_SYM", 
-		"SAFE_EQ", "UNARY_BIT_COMPLEMENT", "BIT_INCLUSIVE_OR", "BIT_AND", "SIGNED_LEFT_SHIFT", 
-		"SIGNED_RIGHT_SHIFT", "BIT_EXCLUSIVE_OR", "MOD_SYM", "ADD_OP", "SUB_OP", 
-		"MUL_OP", "DIV_OP", "DOT", "EQ", "EQ_OR_ASSIGN", "NEQ", "NEQ_SYM", "GT", 
-		"GTE", "LT", "LTE", "LEFT_PAREN", "RIGHT_PAREN", "LEFT_BRACE", "RIGHT_BRACE", 
-		"COMMA", "DOUBLE_QUOTA", "SINGLE_QUOTA", "BACK_QUOTA", "UL_"
+		"ASC", "DESC", "WITH", "RECURSIVE", "ROLLUP", "HAVING", "WINDOW", "AS", 
+		"ORDER", "LIMIT", "OFFSET", "INTO", "SET", "FOR", "UPDATE", "SHARE", "OF", 
+		"NOWAIT", "LOCKED", "LOCK", "IN", "MODE", "INNER", "CROSS", "JOIN", "ON", 
+		"LEFT", "RIGHT", "OUTER", "NATURAL", "USING", "USE", "INDEX", "KEY", "IGNORE", 
+		"FORCE", "UNION", "DEFAULT", "DELETE", "QUICK", "INSERT", "VALUES", "VALUE", 
+		"DUPLICATE", "EXISTS", "IS", "AND", "OR", "XOR", "NOT", "BETWEEN", "NULL", 
+		"TRUE", "FALSE", "UNKNOWN", "SOUNDS", "LIKE", "DIV", "MOD", "BINARY", 
+		"ROW", "ESCAPE", "REGEXP", "DATE", "TIME", "TIMESTAMP", "CASE", "WHEN", 
+		"THEN", "IF", "ELSE", "END", "ID", "AND_SYM", "OR_SYM", "NOT_SYM", "UNARY_BIT_COMPLEMENT", 
+		"BIT_INCLUSIVE_OR", "BIT_AND", "SIGNED_LEFT_SHIFT", "SIGNED_RIGHT_SHIFT", 
+		"BIT_EXCLUSIVE_OR", "MOD_SYM", "PLUS", "MINUS", "ASTERISK", "SLASH", "DOT", 
+		"SAFE_EQ", "EQ", "EQ_OR_ASSIGN", "NEQ", "NEQ_SYM", "GT", "GTE", "LT", 
+		"LTE", "LEFT_PAREN", "RIGHT_PAREN", "LEFT_BRACE", "RIGHT_BRACE", "COMMA", 
+		"DOUBLE_QUOTA", "SINGLE_QUOTA", "BACK_QUOTA", "UL_", "QUESTION"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -217,11 +219,11 @@ public class SQLBaseParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3t\24\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3|\24\4\2\t\2\4\3\t"+
 		"\3\3\2\3\2\3\2\3\2\7\2\13\n\2\f\2\16\2\16\13\2\3\2\3\2\3\3\3\3\3\3\2\2"+
-		"\4\2\4\2\2\2\22\2\6\3\2\2\2\4\21\3\2\2\2\6\7\7l\2\2\7\f\5\4\3\2\b\t\7"+
-		"p\2\2\t\13\5\4\3\2\n\b\3\2\2\2\13\16\3\2\2\2\f\n\3\2\2\2\f\r\3\2\2\2\r"+
-		"\17\3\2\2\2\16\f\3\2\2\2\17\20\7m\2\2\20\3\3\2\2\2\21\22\3\2\2\2\22\5"+
+		"\4\2\4\2\2\2\22\2\6\3\2\2\2\4\21\3\2\2\2\6\7\7s\2\2\7\f\5\4\3\2\b\t\7"+
+		"w\2\2\t\13\5\4\3\2\n\b\3\2\2\2\13\16\3\2\2\2\f\n\3\2\2\2\f\r\3\2\2\2\r"+
+		"\17\3\2\2\2\16\f\3\2\2\2\17\20\7t\2\2\20\3\3\2\2\2\21\22\3\2\2\2\22\5"+
 		"\3\2\2\2\3\f";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());

@@ -15,6 +15,7 @@ BY: B Y;
 ASC: A S C;
 DESC: D E S C;
 WITH: W I T H;
+RECURSIVE: R E C U R S I V E;
 ROLLUP: R O L L U P;
 HAVING: H A V I N G;
 WINDOW: W I N D O W;
@@ -89,6 +90,14 @@ REGEXP: R E G E X P;
 DATE: D A T E;
 TIME: T I M E;
 TIMESTAMP:TIME S T A M P;
+
+CASE: C A S E;
+WHEN: W H E N;
+THEN: T H E N;
+IF: I F;
+ELSE: E L S E;
+END: E N D;
+
 
 ID: 
 	(BACK_QUOTA?[a-zA-Z_$][a-zA-Z0-9_$]* BACK_QUOTA? DOT)?

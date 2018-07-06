@@ -112,6 +112,40 @@ functionCall:
 	ID LEFT_PAREN(|expr ( COMMA  expr)*) RIGHT_PAREN
 	;
 
+caseExpress:
+	caseCond
+	|caseComp
+	;
+	
+caseComp:
+	CASE simpleExpr caseWhenComp+ elseResult? END  
+	;
+	
+caseWhenComp:
+	WHEN simpleExpr THEN caseResult
+	;
+
+caseCond:
+	CASE whenResult+ elseResult? END
+	;
+	
+whenResult:
+	WHEN booleanPrimary THEN caseResult
+	;
+
+elseResult:
+	ELSE caseResult
+	;
+
+caseResult:
+	expr
+	;
+
+selectExpr:
+	(bitExpr| caseExpress) AS? alias?
+	;
+	
+	
 //https://dev.mysql.com/doc/refman/8.0/en/join.html
 tableReferences:
     tableReference(COMMA  tableReference)*

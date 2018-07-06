@@ -17,6 +17,30 @@ public interface DMLBaseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelect(DMLBaseParser.SelectContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link DMLBaseParser#withClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWithClause(DMLBaseParser.WithClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DMLBaseParser#cteClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCteClause(DMLBaseParser.CteClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DMLBaseParser#cteName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCteName(DMLBaseParser.CteNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DMLBaseParser#unionSelect}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnionSelect(DMLBaseParser.UnionSelectContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DMLBaseParser#selectExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -95,11 +119,29 @@ public interface DMLBaseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSubquery(DMLBaseParser.SubqueryContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link DMLBaseParser#selectExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelectExprs(DMLBaseParser.SelectExprsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DMLBaseParser#selectExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSelectExpr(DMLBaseParser.SelectExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DMLBaseParser#bitExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBitExpr(DMLBaseParser.BitExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DMLBaseParser#alias}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlias(DMLBaseParser.AliasContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link DMLBaseParser#delete}.
 	 * @param ctx the parse tree

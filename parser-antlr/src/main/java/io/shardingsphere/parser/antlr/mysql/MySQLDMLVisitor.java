@@ -73,6 +73,54 @@ public interface MySQLDMLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionCall(MySQLDMLParser.FunctionCallContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#caseExpress}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseExpress(MySQLDMLParser.CaseExpressContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#caseComp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseComp(MySQLDMLParser.CaseCompContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#caseWhenComp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseWhenComp(MySQLDMLParser.CaseWhenCompContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#caseCond}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseCond(MySQLDMLParser.CaseCondContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#whenResult}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhenResult(MySQLDMLParser.WhenResultContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#elseResult}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseResult(MySQLDMLParser.ElseResultContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#caseResult}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseResult(MySQLDMLParser.CaseResultContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#selectExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelectExpr(MySQLDMLParser.SelectExprContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySQLDMLParser#tableReferences}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -90,12 +138,6 @@ public interface MySQLDMLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTableFactor(MySQLDMLParser.TableFactorContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MySQLDMLParser#alias}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlias(MySQLDMLParser.AliasContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySQLDMLParser#joinTable}.
 	 * @param ctx the parse tree
@@ -247,6 +289,30 @@ public interface MySQLDMLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelect(MySQLDMLParser.SelectContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#withClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWithClause(MySQLDMLParser.WithClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#cteClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCteClause(MySQLDMLParser.CteClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#cteName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCteName(MySQLDMLParser.CteNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#unionSelect}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnionSelect(MySQLDMLParser.UnionSelectContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySQLDMLParser#selectExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -313,11 +379,17 @@ public interface MySQLDMLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSubquery(MySQLDMLParser.SubqueryContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MySQLDMLParser#selectExpr}.
+	 * Visit a parse tree produced by {@link MySQLDMLParser#selectExprs}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSelectExpr(MySQLDMLParser.SelectExprContext ctx);
+	T visitSelectExprs(MySQLDMLParser.SelectExprsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#alias}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlias(MySQLDMLParser.AliasContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySQLDMLParser#delete}.
 	 * @param ctx the parse tree

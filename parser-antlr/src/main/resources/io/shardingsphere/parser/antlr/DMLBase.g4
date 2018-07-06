@@ -4,6 +4,25 @@ import SQLBase, Keyword, Symbol;
 
 //define delete rule template 
 select: 
+	withClause
+	|unionSelect
+	;
+
+withClause:
+	WITH RECURSIVE? cteClause (COMMA cteClause)*
+	unionSelect
+	;
+
+cteClause:
+	cteName itemList? AS subquery
+	;
+	
+cteName:
+   ID
+   ;
+   
+   	
+unionSelect:
 	selectExpression (UNION ALL? selectExpression)*
 	;
 
@@ -61,7 +80,7 @@ rangeClause:
 	;
     
 subquery:
-	LEFT_PAREN selectExpression RIGHT_PAREN
+	LEFT_PAREN unionSelect RIGHT_PAREN
 	;
 	
 selectExprs:
@@ -74,10 +93,11 @@ selectExpr:
 	;
 
 bitExpr:
-	
-   ;
+	;
  
-alias:ID;
+alias:
+	ID
+	;
 
 //define delete rule template
 delete: 
