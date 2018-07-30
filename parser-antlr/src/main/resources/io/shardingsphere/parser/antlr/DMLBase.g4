@@ -2,6 +2,16 @@ grammar DMLBase;
 
 import SQLBase, Keyword, Symbol;
 
+execute:
+	select
+	|insert
+	|update
+	|delete
+	;
+	
+insert:
+	;
+	
 //define delete rule template 
 select: 
 	withClause
