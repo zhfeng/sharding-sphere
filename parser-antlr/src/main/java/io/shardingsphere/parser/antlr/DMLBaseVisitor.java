@@ -11,6 +11,18 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface DMLBaseVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link DMLBaseParser#execute}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExecute(DMLBaseParser.ExecuteContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DMLBaseParser#insert}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInsert(DMLBaseParser.InsertContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DMLBaseParser#select}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

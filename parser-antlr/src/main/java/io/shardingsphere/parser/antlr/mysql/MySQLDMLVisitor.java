@@ -283,6 +283,12 @@ public interface MySQLDMLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitItem(MySQLDMLParser.ItemContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySQLDMLParser#execute}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExecute(MySQLDMLParser.ExecuteContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySQLDMLParser#select}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
