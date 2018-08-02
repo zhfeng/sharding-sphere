@@ -90,11 +90,7 @@ public class TreeUtils {
 		List<ParseTree> childNodes = new ArrayList<>();
 		for (int i = 0; i < count; i++) {
 			ParseTree child = node.getChild(i);
-
-			int childCount = child.getChildCount();
-			for (int j = 0; j < childCount; j++) {
-				childNodes.add(child.getChild(j));
-			}
+			childNodes.add(child);
 		}
 
 		for (ParseTree child : childNodes) {
@@ -108,11 +104,12 @@ public class TreeUtils {
 	}
 
 	public static List<ParseTree> getAllTopDescendantByClass(ParseTree node, Class<?> clazz) {
+		List<ParseTree> childs = new ArrayList<>();
+
 		if (node == null) {
-			return null;
+			return childs;
 		}
 
-		List<ParseTree> childs = new ArrayList<>();
 		if (isSameType(node.getClass(), clazz)) {
 			childs.add(node);
 			return childs;
@@ -129,19 +126,14 @@ public class TreeUtils {
 			if (isSameType(child.getClass(), clazz)) {
 				childs.add(child);
 			} else {
-				int childCount = child.getChildCount();
-				for (int j = 0; j < childCount; j++) {
-					childNodes.add(child.getChild(j));
-				}
+				childNodes.add(child);
 			}
 		}
-
-		if (childs.isEmpty()) {
-			for (ParseTree child : childNodes) {
-				List<ParseTree> retChilds = getAllTopDescendantByClass(child, clazz);
-				if (retChilds != null) {
-					childs.addAll(retChilds);
-				}
+		
+		for (ParseTree child : childNodes) {
+			List<? extends ParseTree> retChilds = getAllTopDescendantByClass(child, clazz);
+			if (retChilds != null) {
+				childs.addAll(retChilds);
 			}
 		}
 
@@ -171,9 +163,7 @@ public class TreeUtils {
 			}
 
 			if (!onlyChild) {
-				for (int j = 0; j < child.getChildCount(); j++) {
-					childNodes.add(child.getChild(j));
-				}
+				childNodes.add(child);
 			}
 		}
 
@@ -218,10 +208,7 @@ public class TreeUtils {
 					return terminal;
 				}
 			} else {
-				int childCount = child.getChildCount();
-				for (int j = 0; j < childCount; j++) {
-					nonterminalChildNodes.add(child.getChild(j));
-				}
+				nonterminalChildNodes.add(child);
 			}
 		}
 
@@ -272,10 +259,7 @@ public class TreeUtils {
 					retNodes.add(terminal);
 				}
 			} else {
-				int childCount = child.getChildCount();
-				for (int j = 0; j < childCount; j++) {
-					nonTerminalChilds.add(child.getChild(j));
-				}
+				nonTerminalChilds.add(child);
 			}
 		}
 

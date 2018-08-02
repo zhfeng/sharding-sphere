@@ -31,3 +31,19 @@ logs/
 Thumbs.db
 
 *.class
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/mysql/MySQLDMLLexer.tokens
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/mysql/MySQLDMLLexer.interp
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/mysql/MySQLDML.tokens
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/mysql/MySQLDML.interp
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/Symbol.tokens
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/Symbol.interp
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/SQLBaseLexer.tokens
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/SQLBaseLexer.interp
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/SQLBase.tokens
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/SQLBase.interp
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/Keyword.tokens
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/Keyword.interp
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/DMLBaseLexer.tokens
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/DMLBaseLexer.interp
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/DMLBase.tokens
+parser-antlr/src/main/java/io/shardingsphere/parser/antlr/DMLBase.interp
