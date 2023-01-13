@@ -944,7 +944,7 @@
                                     <version>${maven.version.range}</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <version>${java.version}</version>
+                                    <version>11</version>
                                 </requireJavaVersion>
                             </rules>
                             <fail>true</fail>
@@ -1187,6 +1187,9 @@
             <activation>
                 <jdk>[11,)</jdk>
             </activation>
+            <properties>
+                <maven.compiler.release>8</maven.compiler.release>
+            </properties>
             <build>
                 <pluginManagement>
                     <plugins>
