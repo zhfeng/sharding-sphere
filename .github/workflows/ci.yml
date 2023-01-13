@@ -78,6 +78,13 @@ jobs:
         run: ./mvnw -T1C -B -ntp clean install
       - name: Build examples with Maven
         run: ./mvnw -T1C -B -f examples/pom.xml clean package -DskipTests
+      - name: Setup JDK 8 for Test
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 8
+      - name: Run tests with JDK 8
+        run: ./mvnw -T1C -B -ntp -fae test -Denforcer.skip=true
 
   test-coverage:
     if: github.repository == 'apache/shardingsphere'

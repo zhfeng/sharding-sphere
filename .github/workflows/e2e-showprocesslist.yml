@@ -83,5 +83,10 @@ jobs:
           java-version: 11
       - name: Build ShowProcesslist IT image
         run: ./mvnw -B clean install -am -pl test/e2e/showprocesslist -Pit.env.docker -DskipTests
+      - name: Setup JDK 8 for Test
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 8
       - name: Run MySQL ShowProcesslist E2E Test
-        run: ./mvnw -nsu -B install -f test/e2e/showprocesslist/pom.xml -Dit.env.type=docker -Dit.scenarios=cluster_jdbc_proxy -Dit.run.modes=${{ matrix.mode }}
+        run: ./mvnw -nsu -B install -f test/e2e/showprocesslist/pom.xml -Dit.env.type=docker -Dit.scenarios=cluster_jdbc_proxy -Dit.run.modes=${{ matrix.mode }} -Denforcer.skip=true

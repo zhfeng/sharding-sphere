@@ -97,12 +97,17 @@ jobs:
           java-version: 11
       - name: Build Pipeline IT image
         run: ./mvnw -B clean install -am -pl test/e2e/pipeline -Pit.env.docker -DskipTests
+      - name: Setup JDK 8 for Test
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 8
       - name: Run Pipeline MySQL E2E Test
-        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.mysql.version=${{ env.mysql_version }}
+        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.mysql.version=${{ env.mysql_version }} -Denforcer.skip=true
       - name: Run Pipeline PostgreSQL E2E Test
-        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.postgresql.version=${{ env.postgresql_version }}
+        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.postgresql.version=${{ env.postgresql_version }} -Denforcer.skip=true
       - name: Run Pipeline openGauss E2E Test
-        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.opengauss.version=${{ env.opengauss_version }}
+        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.opengauss.version=${{ env.opengauss_version }} -Denforcer.skip=true
 
   pipeline-daily-it-test:
     if: (github.event_name == 'schedule' && github.repository == 'apache/shardingsphere')
@@ -130,9 +135,14 @@ jobs:
           java-version: 11
       - name: Build Pipeline IT image
         run: ./mvnw -B clean install -am -pl test/e2e/pipeline -Pit.env.docker -DskipTests
+      - name: Setup JDK 8 for Test
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 8
       - name: Run Pipeline Daily MySQL E2E Test
-        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.mysql.version=${{ env.mysql_version }}
+        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.mysql.version=${{ env.mysql_version }} -Denforcer.skip=true
       - name: Run Pipeline Daily PostgreSQL E2E Test
-        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.postgresql.version=${{ env.postgresql_version }}
+        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.postgresql.version=${{ env.postgresql_version }} -Denforcer.skip=true
       - name: Run Pipeline Daily openGauss E2E Test
-        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.opengauss.version=${{ env.opengauss_version }}
+        run: ./mvnw -nsu -B install -f test/e2e/pipeline/pom.xml -Dpipeline.it.env.type=docker -Dpipeline.it.docker.opengauss.version=${{ env.opengauss_version }} -Denforcer.skip=true
